@@ -11,6 +11,11 @@ import sample
 import encoder
 
 
+f = open("training_data\comments.txt", "r")
+
+train_text = f.read()
+
+
 def interact_model(
     model_name='124M',
     seed=None,
@@ -78,7 +83,7 @@ def interact_model(
             while not raw_text:
                 print('Prompt should not be empty!')
                 raw_text = input("Model prompt >>> ")
-            # raw_text = "what the fuck is mayonaise"
+            raw_text = train_text
             context_tokens = enc.encode(raw_text)
             generated = 0
             for _ in range(nsamples // batch_size):
